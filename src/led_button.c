@@ -26,17 +26,18 @@ main(void)
     GPIO_Button_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_Init(GPIOA, &GPIO_Button_InitStruct);
 
-    /* NOTE: This could be edited to make it so its updated every x amount of time 
-             as opposed to as fast it possibly can lol */
+    /* NOTE: This could be edited to make it so its updated every x amount of
+       time as opposed to as fast it possibly can lol */
     while (1)
     {
-        static int ledval = 0;
         if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0))
         {
-            // GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_SET);
-            GPIO_WriteBit(GPIOC, GPIO_Pin_8, (ledval) ? Bit_SET:Bit_RESET);
+            GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_SET);
         }
-        ledval = 1 - ledval;
+        else
+        {
+            GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_RESET);
+        }
     }
 }
 
