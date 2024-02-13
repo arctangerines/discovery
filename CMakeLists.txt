@@ -28,7 +28,7 @@ include_directories(${CMAKE_SOURCE_DIR}/inc/) #this is for the file stm32f10x_co
 # better for clarity, more laborious upfront :)
 set(DISC_FILES
         src/uart/main.c
-        src/uart/uart.c
+        src/uart/uart_c.c
         lib/startup_stm32f10x.c #auto generated but available in the template by prof brown
         stlib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/system_stm32f10x.c
         stlib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c
