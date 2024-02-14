@@ -1,8 +1,3 @@
-#include <stm32f10x.h>
-#include <stm32f10x_gpio.h>
-#include <stm32f10x_rcc.h>
-#include <stm32f10x_usart.h>
-
 #include "uart_c.h"
 
 /**
@@ -77,7 +72,7 @@ int
 uart_getc(USART_TypeDef* USARTx)
 {
     // we just saying if its empty loop until theres something
-    while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET)
+    while (USART_GetFlagStatus(USARTx, USART_FLAG_RXNE) == RESET)
         ;
     // a lot of assumptions here, first that there is a int/char in there
     // second that idkf ykwim

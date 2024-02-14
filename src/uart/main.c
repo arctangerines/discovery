@@ -1,8 +1,8 @@
+#include "uart_c.h"
 #include <stm32f10x.h>
 #include <stm32f10x_gpio.h>
 #include <stm32f10x_rcc.h>
 #include <stm32f10x_usart.h>
-#include "uart_c.h"
 
 #ifdef USE_FULL_ASSERT
 void
@@ -59,23 +59,9 @@ main()
     }
     while (1)
     {
-        static int toggle = 1;
-        if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0))
-        {
-            if (toggle)
-            {
-                uart_putstr("\nStopping...\n\r", USART1);
-            }
-            else
-            {
-                uart_putstr("\nContinuing...\n\r", USART1);
-            }
-            toggle ^= 1;
-        }
-        if (toggle)
-        {
-            uart_putstr(string, USART1);
-        }
-        Delay(666);
+        // we can echo what we type but theres a problem now, we can only type
+        // in the same line 🤔
+        uart_putc(uart_getc(USART1), USART1);
+        // Delay(666);
     }
 }
